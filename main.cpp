@@ -36,9 +36,34 @@ public:
         return tenderId;
     }
 
-   
+    // Методи
+    void updateStatus(const std::string& newStatus) {
+        if (newStatus == "Draft" || newStatus == "Active" || newStatus == "Completed") {
+            status = newStatus;
+            std::cout << "Status updated to: " << newStatus << std::endl;
+        }
+        else {
+            std::cout << "Invalid status!" << std::endl;
+        }
+    }
+
+    void displayContractInfo() const {
+        std::cout << "Contract ID: " << contractId << std::endl;
+        std::cout << "Tender ID: " << tenderId << std::endl;
+        std::cout << "Creation Date: " << ctime(&creationDate);
+        std::cout << "Status: " << status << std::endl;
+    }
 };
 
 int main() {
+    // Приклад використання
+    Contract contract(1234); // Створюємо контракт із TenderId = 1234
+    contract.displayContractInfo();
+
+    contract.updateStatus("Active");
+    contract.displayContractInfo();
+
+    contract.updateStatus("InvalidStatus"); // Спроба оновлення на неправильний статус
+
     return 0;
 }
